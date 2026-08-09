@@ -138,3 +138,16 @@ nav{
   }
 
 }
+footer b{
+  color:var(--gold);
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+footer{
+  text-transform:none;
+}
+
+footer div{
+  line-height:1.6;
+}
