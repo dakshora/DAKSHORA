@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="description" content="Contact DAKSHORA for AI, coding programs, website development and AI business automation solutions.">
+
+<title>Contact | DAKSHORA</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+
+<a class="logo" href="index.html">
+<img src="IMG-20260808-WA0001.jpg" alt="DAKSHORA">
+</a>
+
+<button class="menu">☰</button>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="courses.html">Programs</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+</header>
+
+
+<main>
+
+<section class="content split">
+
+<div>
+
+<p class="tag">CONTACT DAKSHORA</p>
+
+<h2>
+Let's build something useful together.
+</h2>
+
+<p class="lead">
+Whether you want to learn AI and coding, build a website, automate your business or explore a technology partnership, talk to DAKSHORA.
+</p>
+
+
+<h3>📲 WhatsApp</h3>
+
+<p>
+<strong>8796347851</strong>
+</p>
+
+<a
+class="btn gold"
+href="https://wa.me/918796347851?text=Hello%20DAKSHORA%2C%20I%20would%20like%20to%20know%20more%20about%20your%20programs%20and%20services."
+target="_blank"
+rel="noopener">
+Chat on WhatsApp
+</a>
+
+
+<br><br>
+
+
+<h3>📧 Email</h3>
+
+<p>
+<strong>dakshora.ai@gmail.com</strong>
+</p>
+
+<a
+class="btn gold"
+href="mailto:dakshora.ai@gmail.com?subject=DAKSHORA%20Enquiry">
+Send Email
+</a>
+
+</div>
+
+
+<form id="contactForm">
+
+<label>
+Name
+<input
+id="name"
+name="name"
+required
+placeholder="Your full name">
+</label>
+
+
+<label>
+Mobile
+<input
+id="mobile"
+name="mobile"
+required
+placeholder="Your mobile number"
+type="tel">
+</label>
+
+
+<label>
+Email
+<input
+id="email"
+name="email"
+type="email"
+placeholder="you@example.com">
+</label>
+
+
+<label>
+Interested In
+
+<select id="interest" name="interest">
+
+<option>AI & Generative AI</option>
+
+<option>Python & Coding</option>
+
+<option>Robotics & Innovation</option>
+
+<option>Digital & Earning Skills</option>
+
+<option>Website Development</option>
+
+<option>Business Website</option>
+
+<option>AI Business Automation</option>
+
+<option>WhatsApp Automation</option>
+
+<option>AI Chatbot</option>
+
+<option>School / Institute Solution</option>
+
+<option>Teacher Training</option>
+
+<option>Business Consultation</option>
+
+</select>
+
+</label>
+
+
+<label>
+Message
+
+<textarea
+id="message"
+name="message"
+rows="5"
+placeholder="Tell us what you're looking for..."></textarea>
+
+</label>
+
+
+<button
+class="btn gold"
+type="submit">
+Send Enquiry on WhatsApp
+</button>
+
+
+<p id="msg" class="success"></p>
+
+</form>
+
+</section>
+
+
+<section class="content">
+
+<p class="tag">DAKSHORA SERVICES</p>
+
+<h2>
+AI • Websites • Automation
+</h2>
+
+<p>
+We help students, schools, coaching institutes, professionals, startups and small businesses use technology to learn, build and grow.
+</p>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div>
+<b>DAKSHORA</b><br>
+AI • CODING • FUTURE SKILLS
+</div>
+
+<div>
+LEARN • BUILD • EARN
+</div>
+
+<div>
+© 2026 DAKSHORA. ALL RIGHTS RESERVED.
+</div>
+
+</footer>
+
+
+<script>
+
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+
+event.preventDefault();
+
+const name = document.getElementById("name").value.trim();
+
+const mobile = document.getElementById("mobile").value.trim();
+
+const email = document.getElementById("email").value.trim();
+
+const interest = document.getElementById("interest").value;
+
+const message = document.getElementById("message").value.trim();
+
+
+const whatsappMessage =
+"Hello DAKSHORA,%0A%0A" +
+"*New Website Enquiry*%0A%0A" +
+"Name: " + encodeURIComponent(name) + "%0A" +
+"Mobile: " + encodeURIComponent(mobile) + "%0A" +
+"Email: " + encodeURIComponent(email) + "%0A" +
+"Interested In: " + encodeURIComponent(interest) + "%0A" +
+"Message: " + encodeURIComponent(message);
+
+
+const whatsappURL =
+"https://wa.me/918796347851?text=" + whatsappMessage;
+
+
+window.open(whatsappURL, "_blank");
+
+
+document.getElementById("msg").textContent =
+"Your enquiry is ready to send on WhatsApp.";
+
+});
+
+</script>
+
+</body>
+</html>
