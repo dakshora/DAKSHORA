@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dakshora.in/sitemap.xml
