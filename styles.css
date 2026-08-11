@@ -455,3 +455,208 @@
   }
 
 }
+/* =========================================
+   DAKSHORA AI CHAT - VISIBILITY FIX
+   ========================================= */
+
+.ai-chat {
+  background: #17142b !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+.dak-chat-header {
+  background: #211d3d !important;
+  color: #ffffff !important;
+}
+
+.dak-chat-header strong {
+  color: #ffffff !important;
+}
+
+.dak-chat-header small {
+  color: #5cffb0 !important;
+}
+
+.new-chat-btn {
+  color: #ffffff !important;
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+.dak-language-row {
+  background: #211d3d !important;
+  color: #ffffff !important;
+}
+
+.dak-language-row span {
+  color: #ffffff !important;
+}
+
+.dak-language-row select {
+  background: #30294d !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+}
+
+
+/* CHAT AREA */
+
+.chat-messages {
+  background: #111022 !important;
+  color: #ffffff !important;
+}
+
+
+/* BOT MESSAGE */
+
+.chat-message.bot-message {
+  color: #ffffff !important;
+}
+
+.message-content {
+  color: #ffffff !important;
+}
+
+.message-content strong {
+  color: #ffffff !important;
+}
+
+.message-content p {
+  color: #f4f1ff !important;
+  opacity: 1 !important;
+}
+
+
+/* USER MESSAGE */
+
+.chat-message.user-message {
+  color: #ffffff !important;
+}
+
+.chat-message.user-message p {
+  color: #ffffff !important;
+}
+
+
+/* MESSAGE BUBBLE */
+
+.bot-message .message-content {
+  background: #292442 !important;
+  color: #ffffff !important;
+}
+
+.user-message .message-content {
+  background: linear-gradient(
+    135deg,
+    #702bd9,
+    #e52fa4
+  ) !important;
+
+  color: #ffffff !important;
+}
+
+
+/* SPEAK BUTTON */
+
+.message-actions button,
+.speak-message {
+  color: #ffffff !important;
+  background: rgba(255,255,255,0.10) !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+
+/* INPUT AREA */
+
+.dak-input-area {
+  background: #211d3d !important;
+  border-top: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+.dak-input-area textarea {
+  background: #ffffff !important;
+  color: #17142b !important;
+  caret-color: #6c2bd9 !important;
+}
+
+.dak-input-area textarea::placeholder {
+  color: #66617a !important;
+  opacity: 1 !important;
+}
+
+
+/* MICROPHONE */
+
+.mic-button {
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    #702bd9,
+    #e52fa4
+  ) !important;
+}
+
+
+/* SEND */
+
+.send-button {
+  color: #ffffff !important;
+  background: linear-gradient(
+    135deg,
+    #702bd9,
+    #ff4f8b
+  ) !important;
+}
+
+
+/* VOICE STATUS */
+
+.voice-status {
+  color: #d8d2ee !important;
+  opacity: 1 !important;
+}
+
+
+/* NOTE */
+
+.dak-input-note {
+  color: #aaa4c4 !important;
+  opacity: 1 !important;
+}
+
+
+/* TYPING */
+
+.ai-typing {
+  color: #ddd7f0 !important;
+}
+
+.ai-typing span {
+  background: #c43cff !important;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .ai-chat {
+    width: 100% !important;
+  }
+
+  .chat-messages {
+    min-height: 320px !important;
+    max-height: 420px !important;
+  }
+
+  .message-content p {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+  }
+
+  .dak-input-area textarea {
+    font-size: 14px !important;
+  }
+
+}
