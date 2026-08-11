@@ -660,3 +660,135 @@
   }
 
 }
+/* =====================================================
+   DAKSHORA AI - FINAL TEXT VISIBILITY FIX
+   ===================================================== */
+
+#ai {
+  background: #0f0b24 !important;
+}
+
+#ai .ai-panel {
+  background: #17132f !important;
+  color: #ffffff !important;
+}
+
+#ai .ai-content {
+  color: #ffffff !important;
+}
+
+#ai .ai-content h2,
+#ai .ai-content p,
+#ai .ai-content span,
+#ai .ai-content small {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* AI CHAT BOX */
+#ai .ai-chat {
+  background: #17142f !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+/* EVERY TEXT INSIDE CHAT */
+#ai .ai-chat * {
+  opacity: 1 !important;
+}
+
+/* BOT MESSAGE */
+#ai .ai-chat .bubble.bot {
+  background: #292342 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.10) !important;
+}
+
+#ai .ai-chat .bubble.bot,
+#ai .ai-chat .bubble.bot * {
+  color: #ffffff !important;
+}
+
+/* USER MESSAGE */
+#ai .ai-chat .bubble.user {
+  background: linear-gradient(135deg,#702bd9,#e52fa4) !important;
+  color: #ffffff !important;
+}
+
+#ai .ai-chat .bubble.user,
+#ai .ai-chat .bubble.user * {
+  color: #ffffff !important;
+}
+
+/* RESULT */
+#ai .ai-result {
+  background: #292342 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+#ai .ai-result b,
+#ai .ai-result span {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* INPUT AREA */
+#ai .chat-input {
+  background: #211d3d !important;
+  border-top: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+/* INPUT */
+#ai .chat-input input {
+  background: #ffffff !important;
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
+  opacity: 1 !important;
+}
+
+#ai .chat-input input::placeholder {
+  color: #555555 !important;
+  opacity: 1 !important;
+}
+
+/* SEND BUTTON */
+#ai #aiSend {
+  background: linear-gradient(135deg,#702bd9,#e52fa4) !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* AI CORE */
+#ai .ai-core {
+  color: #ffffff !important;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  #ai .ai-panel {
+    width: 100% !important;
+  }
+
+  #ai .ai-chat {
+    width: 100% !important;
+    min-height: 350px !important;
+  }
+
+  #ai .bubble {
+    color: #ffffff !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  #ai .ai-result {
+    color: #ffffff !important;
+    font-size: 14px !important;
+  }
+
+  #ai .chat-input input {
+    color: #111111 !important;
+    font-size: 14px !important;
+  }
+}
