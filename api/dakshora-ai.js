@@ -1,85 +1,113 @@
 export default async function handler(req, res) {
+
   if (req.method !== "POST") {
+
     return res.status(405).json({
       error: "Method not allowed"
     });
+
   }
 
+
   try {
-    const apiKey = process.env.OPENROUTER_API_KEY;
+
+    const apiKey =
+      process.env.OPENROUTER_API_KEY;
+
 
     if (!apiKey) {
+
       return res.status(500).json({
-        error: "DAKSHORA AI is not configured on Vercel."
+        error:
+          "DAKSHORA AI is not configured."
       });
+
     }
 
-    const { message } = req.body || {};
 
-    if (!message || !message.trim()) {
+    const body =
+      req.body || {};
+
+
+    /*
+      Support both:
+      messages: [...]
+      and old:
+      message: "..."
+    */
+
+    let messages =
+      Array.isArray(body.messages)
+        ? body.messages
+        : [];
+
+
+    if (
+      !messages.length &&
+      body.message
+    ) {
+
+      messages = [
+        {
+          role: "user",
+          content: body.message
+        }
+      ];
+
+    }
+
+
+    if (!messages.length) {
+
       return res.status(400).json({
-        error: "Please tell DAKSHORA your problem."
+        error:
+          "No conversation message received."
       });
+
     }
 
-    const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
-      {
-        method: "POST",
 
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`,
-          "HTTP-Referer": "https://www.dakshora.in",
-          "X-Title": "DAKSHORA AI"
-        },
+    /*
+      Protect server from
+      excessively large conversations.
 
-        body: JSON.stringify({
-          model: "openrouter/free",
+      Keep latest 20 messages.
+    */
 
-          messages: [
-            {
-              role: "system",
+    messages =
+      messages.slice(-20);
 
-              content: `
+
+    const systemMessage = {
+
+      role: "system",
+
+      content: `
 You are DAKSHORA AI.
 
-DAKSHORA is an India-first AI assistant designed for people
-of all ages: children, students, teachers, parents,
-professionals, job seekers, entrepreneurs and senior citizens.
+DAKSHORA is an India-first, inclusive AI assistant.
 
-Your mission:
+You help:
 
-Understand the person's problem.
-Help them find practical next steps.
-Make complicated things simple.
+• Children
+• Students
+• Parents
+• Teachers
+• Professionals
+• Job seekers
+• Entrepreneurs
+• Small businesses
+• Senior citizens
 
-LANGUAGE RULES:
+Your goal is not just to answer questions.
 
-1. Automatically understand the user's language.
-2. Reply in the same language whenever possible.
-3. Understand Hindi, English and Hinglish.
-4. Try to understand Indian regional languages.
-5. Never force English on a user who is communicating in an
-Indian language.
-6. If the user mixes Hindi and English, natural Hinglish is fine.
-
-COMMUNICATION STYLE:
-
-- Friendly
-- Respectful
-- Simple
-- Practical
-- Human-friendly
-- Do not use unnecessary technical jargon.
-- Do not overwhelm the user.
-- Ask simple questions if the problem is unclear.
-
-DAKSHORA philosophy:
+Your goal is:
 
 Problem
 ↓
 Understand
+↓
+Clarify
 ↓
 Plan
 ↓
@@ -87,78 +115,221 @@ Action
 ↓
 Progress
 
-For career, education, business and earning questions,
-give realistic guidance.
+LANGUAGE:
 
-Never guarantee:
-- jobs
-- income
-- business success
-- investment returns
+Understand the user's language automatically.
 
-For medical, legal or serious financial matters,
-provide general information and recommend an appropriate
-qualified professional when necessary.
+Reply in the user's language whenever possible.
+
+Support:
+
+Hindi
+English
+Hinglish
+Punjabi
+Bengali
+Marathi
+Gujarati
+Tamil
+Telugu
+Kannada
+Malayalam
+and other languages when possible.
+
+If the user mixes languages,
+reply naturally using the same style.
 
 IMPORTANT:
 
-Do not pretend to be a human.
+Remember the conversation context.
+
+If the user says:
+
+"I have ₹50,000."
+
+and later asks:
+
+"What should I do?"
+
+understand that the question refers
+to the previous information.
+
+Do NOT ask the user to repeat information
+that is already available in the conversation.
+
+STYLE:
+
+Be friendly.
+Be respectful.
+Be simple.
+Be practical.
+
+Avoid unnecessary technical jargon.
+
+If a problem is unclear,
+ask only the minimum useful questions.
+
+Do not overwhelm users.
+
+For children:
+Use age-appropriate, safe explanations.
+
+For senior citizens:
+Use simple, clear language.
+
+For career/business/earning questions:
+Give realistic guidance.
+
+Never guarantee:
+
+• Jobs
+• Income
+• Business success
+• Investment returns
+
+For medical, legal or financial matters,
+provide general information and recommend
+qualified professional help when appropriate.
+
+Never pretend to be human.
+
 You are DAKSHORA AI.
 
-Give the user a useful answer first.
-Then provide practical next steps.
-              `
-            },
+Your response should feel like a helpful
+conversation, not a search result.
+`
+    };
 
-            {
-              role: "user",
-              content: message.trim()
-            }
-          ],
 
-          temperature: 0.7,
+    /*
+      Call OpenRouter
+    */
 
-          max_tokens: 1200
-        })
-      }
-    );
+    const response =
+      await fetch(
+        "https://openrouter.ai/api/v1/chat/completions",
+        {
 
-    const data = await response.json();
+          method: "POST",
+
+          headers: {
+
+            "Content-Type":
+              "application/json",
+
+            "Authorization":
+              `Bearer ${apiKey}`,
+
+            "HTTP-Referer":
+              "https://www.dakshora.in",
+
+            "X-Title":
+              "DAKSHORA AI"
+
+          },
+
+          body: JSON.stringify({
+
+            model:
+              "openrouter/free",
+
+            messages: [
+              systemMessage,
+              ...messages
+            ],
+
+            temperature: 0.7,
+
+            max_tokens: 1200
+
+          })
+
+        }
+      );
+
+
+    const data =
+      await response.json();
+
+
+    /*
+      Handle OpenRouter errors
+    */
 
     if (!response.ok) {
-      console.error("OpenRouter API error:", data);
 
-      return res.status(response.status).json({
+      console.error(
+        "OpenRouter Error:",
+        data
+      );
+
+
+      return res.status(
+        response.status
+      ).json({
+
         error:
           data?.error?.message ||
-          "OpenRouter could not process the request."
+          "OpenRouter request failed."
+
       });
+
     }
+
+
+    /*
+      Extract answer
+    */
 
     const answer =
-      data?.choices?.[0]?.message?.content;
+      data
+        ?.choices?.[0]
+        ?.message?.content;
+
 
     if (!answer) {
+
       return res.status(500).json({
-        error: "DAKSHORA received an empty AI response."
+
+        error:
+          "DAKSHORA received an empty AI response."
+
       });
+
     }
 
+
+    /*
+      Return response
+    */
+
     return res.status(200).json({
+
       success: true,
-      language: "auto",
-      title: "DAKSHORA AI",
+
       answer: answer,
-      nextSteps: []
+
+      language: "auto"
+
     });
 
+
   } catch (error) {
-    console.error("DAKSHORA server error:", error);
+
+    console.error(
+      "DAKSHORA server error:",
+      error
+    );
+
 
     return res.status(500).json({
+
       error:
         error?.message ||
         "DAKSHORA AI server error."
+
     });
+
   }
+
 }
